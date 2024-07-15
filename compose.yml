@@ -1,0 +1,37 @@
+services:
+  orbbec:
+    image: ghcr.io/airesearchlab/orbbec:humble
+    command: ros2 launch orbbec_camera femto_bolt.launch.py
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - /dev:/dev
+
+  yolo:
+    image: ghcr.io/kalanaratnayake/yolo-ros:humble
+    environment:
+      - YOLO_MODEL=yolov9t.pt
+      - INPUT_RGB_TOPIC=/camera/color/image_raw
+      - INPUT_DEPTH_TOPIC=/camera/depth/points
+      - SUBSCRIBE_DEPTH=True
+      - PUBLISH_ANNOTATED_IMAGE=True
+      - OUTPUT_ANNOTATED_TOPIC=/yolo_ros/annotated_image
+      - OUTPUT_DETAILED_TOPIC=/yolo_ros/detection_result
+      - CONFIDENCE_THRESHOLD=0.25
+      - DEVICE='0'
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]   
+    volumes:
+      - yolo:/yolo
+
+volumes:
+  yolo:
