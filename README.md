@@ -26,5 +26,5 @@ docker compose down
 ## Remove docker volumes for resetting
 
 ```sh
-docker compose rm docker_yolo
+docker compose rm human-tracking-setup_yolo
 ```
