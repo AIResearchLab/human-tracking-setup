@@ -23,6 +23,8 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
+    depends_on:
+      - orbbec
     deploy:
       resources:
         reservations:
@@ -47,6 +49,8 @@ services:
   #   restart: unless-stopped
   #   privileged: true
   #   network_mode: host
+      # depends_on:
+      # - yolo
   #   deploy:
   #     resources:
   #       reservations:
