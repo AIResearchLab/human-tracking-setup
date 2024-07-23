@@ -16,14 +16,14 @@ git clone https://github.com/AIResearchLab/human-tracking-setup.git
 ### Startup
 
 ```sh
-docker compose -f compose.amd64.yaml pull
-docker compose -f compose.amd64.yaml up
+docker compose -f compose.amd64.yml pull
+docker compose -f compose.amd64.yml up
 ```
 
 ### Stopping
 
 ```sh
-docker compose -f compose.amd64.yaml down
+docker compose -f compose.amd64.yml down
 ```
 
 ### Remove docker volumes for resetting
@@ -40,14 +40,14 @@ docker compose rm ros-human-detection_yolo
 ### Startup
 
 ```sh
-docker compose -f compose.jnano.yaml pull
-docker compose -f compose.jnano.yaml up
+docker compose -f compose.jnano.yml pull
+docker compose -f compose.jnano.yml up
 ```
 
 ### Stopping
 
 ```sh
-docker compose -f compose.jnano.yaml down
+docker compose -f compose.jnano.yml down
 ```
 
 ### Remove docker volumes for resetting
