@@ -7,7 +7,7 @@ To use GPU with docker while on AMD64 systems, install nvidia-container-toolkit 
 ## Docker based Installation
 
 ```sh
-git clone https://github.com/AIResearchLab/human-tracking-setup.git
+git clone https://github.com/AIResearchLab/ros-human-detection.git
 ```
 
 <details> 
