@@ -13,12 +13,22 @@ git clone https://github.com/AIResearchLab/ros-human-sensing.git
 <details> 
 <summary> <h3> on AMD64 </h3> </summary>
 
-### Startup
+### Startup Detection
+
+Run this on the terminal to start camera and detection
 
 ```sh
-cd ros-human-sensing
-docker compose -f compose.amd64.yml pull
-docker compose -f compose.amd64.yml up
+cd src/ros-human-sensing/docker
+docker compose -f compose.detection.amd64.yml pull
+docker compose -f compose.detection.amd64.yml up
+```
+
+Run this on the terminal to start tracking
+
+```sh
+cd src/ros-human-sensing/docker
+docker compose -f compose.tracking.amd64.yml pull
+docker compose -f compose.tracking.amd64.yml up
 ```
 
 ### Stopping
@@ -41,7 +51,7 @@ docker volume rm ros-human-sensing_yolo
 ### Startup
 
 ```sh
-cd ros-human-sensing
+cd src/ros-human-sensing/docker
 docker compose -f compose.jnano.yml pull
 docker compose -f compose.jnano.yml up
 ```
@@ -86,7 +96,7 @@ pip3 install -r boxmot_ros/requirements.txt
 
 4) Setup [AIResearchLab/OrbbecSDK_ROS2](https://github.com/AIResearchLab/OrbbecSDK_ROS2), [AIResearchLab/astra_legacy_ros](https://github.com/AIResearchLab/astra_legacy_ros) or any other camera system that support standard ROS conventions following given instructions. 
 
-5) Build the system package
+5) Build the packages
 
 ```bash
 colcon build
