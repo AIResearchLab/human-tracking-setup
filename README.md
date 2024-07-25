@@ -16,7 +16,7 @@ git clone https://github.com/AIResearchLab/ros-human-detection.git
 ### Startup
 
 ```sh
-cd human-tracking-setup
+cd ros-human-detection
 docker compose -f compose.amd64.yml pull
 docker compose -f compose.amd64.yml up
 ```
@@ -41,7 +41,7 @@ docker volume rm ros-human-detection_yolo
 ### Startup
 
 ```sh
-cd human-tracking-setup
+cd ros-human-detection
 docker compose -f compose.jnano.yml pull
 docker compose -f compose.jnano.yml up
 ```
