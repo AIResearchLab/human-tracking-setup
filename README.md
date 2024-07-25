@@ -7,7 +7,7 @@ To use GPU with docker while on AMD64 systems, install nvidia-container-toolkit 
 ## Docker based Installation
 
 ```sh
-git clone https://github.com/AIResearchLab/ros-human-detection.git
+git clone https://github.com/AIResearchLab/ros-human-sensing.git
 ```
 
 <details> 
@@ -16,7 +16,7 @@ git clone https://github.com/AIResearchLab/ros-human-detection.git
 ### Startup
 
 ```sh
-cd ros-human-detection
+cd ros-human-sensing
 docker compose -f compose.amd64.yml pull
 docker compose -f compose.amd64.yml up
 ```
@@ -30,7 +30,7 @@ docker compose -f compose.amd64.yml down
 ### Remove docker volumes for resetting
 
 ```sh
-docker volume rm ros-human-detection_yolo
+docker volume rm ros-human-sensing_yolo
 ```
 
 </details>
@@ -41,7 +41,7 @@ docker volume rm ros-human-detection_yolo
 ### Startup
 
 ```sh
-cd ros-human-detection
+cd ros-human-sensing
 docker compose -f compose.jnano.yml pull
 docker compose -f compose.jnano.yml up
 ```
@@ -55,16 +55,52 @@ docker compose -f compose.jnano.yml down
 ### Remove docker volumes for resetting
 
 ```sh
-docker volume rm ros-human-detection_yolo
+docker volume rm ros-human-sensing_yolo
 ```
 </details>
 
 ## ROS based Installation
 
-1) Create a workspace.
+1) Create a workspace
 
-1) Setup [AIResearchLab/OrbbecSDK_ROS2](https://github.com/AIResearchLab/OrbbecSDK_ROS2), [AIResearchLab/astra_legacy_ros](https://github.com/AIResearchLab/astra_legacy_ros) or any other camera system that support standard ROS conventions following given instructions.
+```bash
+mkdir -p workspace/src
+cd workspace/src
+```
 
-2) Setup [KalanaRatnayake/yolo_ros](https://github.com/KalanaRatnayake/yolo_ros) following given instructions.
+2) Clone packages
 
-3) Build the workspace and start the camera system and yolo_ros package
+```bash
+git clone https://github.com/KalanaRatnayake/yolo_ros.git
+git clone https://github.com/KalanaRatnayake/detection_msgs.git
+git clone https://github.com/KalanaRatnayake/boxmot_ros.git
+git clone https://github.com/AIResearchLab/ros-human-sensing.git
+```
+
+3) Install dependencies
+
+```bash
+pip3 install -r yolo_ros/requirements.txt
+pip3 install -r boxmot_ros/requirements.txt
+```
+
+4) Setup [AIResearchLab/OrbbecSDK_ROS2](https://github.com/AIResearchLab/OrbbecSDK_ROS2), [AIResearchLab/astra_legacy_ros](https://github.com/AIResearchLab/astra_legacy_ros) or any other camera system that support standard ROS conventions following given instructions. 
+
+5) Build the system package
+
+```bash
+colcon build
+```
+
+6) Start the system
+
+- Start the camera in one terminal
+
+- Start Detection
+```bash
+ros2 launch ros-human-sensing detection.launch.py
+```
+- Start Detection and tracking
+```bash
+ros2 launch ros-human-sensing tracking.launch.py
+```
