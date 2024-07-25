@@ -15,20 +15,10 @@ git clone https://github.com/AIResearchLab/ros-human-sensing.git
 
 ### Startup Detection
 
-Run this on the terminal to start camera and detection
-
 ```sh
 cd src/ros-human-sensing/docker
-docker compose -f compose.detection.amd64.yml pull
-docker compose -f compose.detection.amd64.yml up
-```
-
-Run this on the terminal to start tracking
-
-```sh
-cd src/ros-human-sensing/docker
-docker compose -f compose.tracking.amd64.yml pull
-docker compose -f compose.tracking.amd64.yml up
+docker compose -f compose.amd64.yml pull
+docker compose -f compose.amd64.yml up
 ```
 
 ### Stopping

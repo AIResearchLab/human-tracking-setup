@@ -1,24 +1,6 @@
 services:
   ros-human-sensing:
-    image: ghcr.io/kalanaratnayake/ros-human-sensing:humble
-    environment:
-      - YOLO_MODEL=yolov10x.pt
-      - INPUT_RGB_TOPIC=/camera/color/image_raw
-      - INPUT_DEPTH_TOPIC=/camera/depth/points
-      - SUBSCRIBE_DEPTH=True
-      - YOLO_PUBLISH_ANNOTATED_IMAGE=True
-      - YOLO_ANNOTATED_TOPIC=/yolo_ros/annotated_image
-      - YOLO_DETAILED_TOPIC=/yolo_ros/detection_result
-      - YOLO_THRESHOLD=0.25
-      - YOLO_DEVICE='0'
-      - TRACKING_MODEL=deepocsort
-      - REID_MODEL=osnet_x0_25_msmt17.pt
-      - INPUT_TOPIC=/yolo_ros/detection_result
-      - BOXMOT_PUBLISH_ANNOTATED_IMAGE=True
-      - BOXMOT_ANNOTATED_TOPIC=/boxmot_ros/annotated_image
-      - BOXMOT_DETAILED_TOPIC=/boxmot_ros/tracking_result
-      - BOXMOT_THRESHOLD=0.25
-      - BOXMOT_DEVICE='0'
+    image: ghcr.io/airesearchlab/ros-human-sensing:humble
     restart: unless-stopped
     privileged: true
     network_mode: host

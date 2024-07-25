@@ -39,8 +39,8 @@ RUN git clone https://github.com/KalanaRatnayake/yolo_ros.git
 RUN git clone https://github.com/KalanaRatnayake/detection_msgs.git
 RUN git clone https://github.com/KalanaRatnayake/boxmot_ros.git
 
-RUN pip3 install --no-cache-dir -r ${WORKSPACE_ROOT}/src/yolo_ros/requirements.txt
 RUN pip3 install --no-cache-dir -r ${WORKSPACE_ROOT}/src/boxmot_ros/requirements.txt
+RUN pip3 install --no-cache-dir -r ${WORKSPACE_ROOT}/src/yolo_ros/requirements.txt
 
 RUN rosdep install --from-paths ${WORKSPACE_ROOT}/src -y --ignore-src
 
@@ -92,22 +92,5 @@ ENTRYPOINT [ "/workspace_entrypoint.sh" ]
 
 WORKDIR ${WORKSPACE_ROOT}
 
-CMD ros2 run yolo_ros yolo_ros --ros-args -p "yolo_model:=$YOLO_MODEL" \
-                                            -p "input_rgb_topic:=$INPUT_RGB_TOPIC" \
-                                            -p "input_depth_topic:=$INPUT_DEPTH_TOPIC" \
-                                            -p "subscribe_depth:=$SUBSCRIBE_DEPTH" \
-                                            -p "publish_annotated_image:=$YOLO_PUBLISH_ANNOTATED_IMAGE" \
-                                            -p "annotated_topic:=$YOLO_ANNOTATED_TOPIC" \
-                                            -p "detailed_topic:=$YOLO_DETAILED_TOPIC" \
-                                            -p "threshold:=$YOLO_THRESHOLD" \
-                                            -p "device:=$YOLO_DEVICE" \
-    && \
-    ros2 run boxmot_ros boxmot_ros --ros-args -p "tracking_model:=$TRACKING_MODEL" \
-                                              -p "reid_model:=$REID_MODEL" \
-                                              -p "input_topic:=$INPUT_TOPIC" \
-                                              -p "publish_annotated_image:=$BOXMOT_PUBLISH_ANNOTATED_IMAGE" \
-                                              -p "annotated_topic:=$BOXMOT_ANNOTATED_TOPIC" \
-                                              -p "detailed_topic:=$BOXMOT_DETAILED_TOPIC" \
-                                              -p "threshold:=$BOXMOT_THRESHOLD" \
-                                              -p "device:=$BOXMOT_DEVICE"
+CMD ros2 launch ros-human-sensing tracking.launch.py
         
