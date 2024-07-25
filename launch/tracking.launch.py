@@ -15,6 +15,8 @@ def generate_launch_description():
 
     with open(params_file, 'r') as f:
         yolo_params   = yaml.safe_load(f)['yolo_ros_node']['ros__parameters']
+
+    with open(params_file, 'r') as f:
         boxmot_params = yaml.safe_load(f)['boxmot_ros_node']['ros__parameters']
 
     yolo_ros_node = launch_ros.actions.Node(package='yolo_ros',
@@ -26,7 +28,7 @@ def generate_launch_description():
     boxmot_ros_node = launch_ros.actions.Node(package='boxmot_ros',
                                               executable='boxmot_ros',
                                               output='both',
-                                              parameters=[params]
+                                              parameters=[boxmot_params]
                                               )
 
     ld = LaunchDescription()
