@@ -30,7 +30,7 @@ docker compose -f compose.amd64.yml down
 ### Remove docker volumes for resetting
 
 ```sh
-docker volume rm ros-human-sensing_yolo
+docker volume rm docker_system
 ```
 
 </details>
@@ -55,7 +55,7 @@ docker compose -f compose.jnano.yml down
 ### Remove docker volumes for resetting
 
 ```sh
-docker volume rm ros-human-sensing_yolo
+docker volume rm docker_system
 ```
 </details>
 
